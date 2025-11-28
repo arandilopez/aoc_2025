@@ -9,11 +9,11 @@ import (
 )
 
 // ExecDay executes the specified day's part function from the AdventOfCode interface.
-func ExecDay(aoc aoc.AdventOfCode, day int, part int, inputFile string) (int, error) {
-	function := reflect.ValueOf(aoc).MethodByName(
-		"Day" + string(rune('0'+day)) +
+func ExecDay(aoc *aoc.AdventOfCode, day *int, part *int, inputFile *string) (int, error) {
+	function := reflect.ValueOf(*aoc).MethodByName(
+		"Day" + string(rune('0'+*day)) +
 			"Part" +
-			string(rune('0'+part)),
+			string(rune('0'+*part)),
 	)
 
 	if !function.IsValid() {
@@ -22,13 +22,16 @@ func ExecDay(aoc aoc.AdventOfCode, day int, part int, inputFile string) (int, er
 
 	results := function.Call([]reflect.Value{reflect.ValueOf(inputFile)})
 
-	if len(results) != 1 {
-		return 0, errors.New("unexpected number of return values")
+	result := results[0]
+	err := results[1]
+
+	if !err.IsNil() {
+		return 0, err.Interface().(error)
 	}
 
-	if results[0].Kind() != reflect.Int {
+	if result.Kind() != reflect.Int {
 		return 0, errors.New("unexpected return type")
 	}
 
-	return int(results[0].Int()), nil
+	return int(result.Int()), nil
 }

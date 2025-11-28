@@ -1,11 +1,13 @@
 package aoc
 
-func (aoc AdventOfCode) Day1Part1(inputFile string) int {
+import "errors"
+
+func (aoc *AdventOfCode) Day1Part1(inputFile *string) (int, error) {
 	// Placeholder implementation for Day 1 Part 1
-	return 42
+	return 42, nil
 }
 
-func (aoc AdventOfCode) Day1Part2(inputFile string) int {
+func (aoc *AdventOfCode) Day1Part2(inputFile *string) (int, error) {
 	// Placeholder implementation for Day 1 Part 2
-	return 84
+	return 0, errors.New("not implemented")
 }
