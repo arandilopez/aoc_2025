@@ -2,9 +2,12 @@
 .DS_Store
 
 # Build artifacts
-bin/
-obj/
-build/
+/bin/
+!/bin/.keep
+/obj/
+!/obj/.keep
+/build/
+!/build/.keep
 
 # Binaries for programs and plugins
 *.exe
@@ -24,8 +27,7 @@ build/
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
-!.keep
 
 # Input files
-*.in
-*.txt
+/inputs/
+!/inputs/.keep
