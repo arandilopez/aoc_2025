@@ -22,8 +22,7 @@ func ExecDay(aoc *aoc.AdventOfCode, day *int, part *int, inputFile *string) (int
 
 	results := function.Call([]reflect.Value{reflect.ValueOf(inputFile)})
 
-	result := results[0]
-	err := results[1]
+	result, err := results[0], results[1]
 
 	if !err.IsNil() {
 		return 0, err.Interface().(error)
