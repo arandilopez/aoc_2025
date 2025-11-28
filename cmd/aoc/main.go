@@ -1,9 +1,7 @@
 package main
 
 import (
-	"flag"
 	"fmt"
-	"os"
 
 	"github.com/arandilopez/aoc_2025/internal/aoc"
 	"github.com/arandilopez/aoc_2025/internal/utils"
@@ -12,30 +10,15 @@ import (
 // Execute the requested day's solution.
 func main() {
 	// parse command line arguments to get the day number
-	day := flag.Int("day", 1, "Day of the Advent of Code to execute")
-	part := flag.Int("part", 1, "Part of the day's challenge to execute (1 or 2)")
-	inputFile := flag.String("input", "input.in", "Path to the input file")
-	flag.Parse()
-
-	if *day < 1 || *day > 25 {
-		fmt.Println("Error: Day must be between 1 and 25")
-		return
-	}
-	if *part != 1 && *part != 2 {
-		fmt.Println("Error: Part must be either 1 or 2")
+	day, part, inputFile, err := utils.ArgsValidation()
+	if err != nil {
+		fmt.Println("Error:", err)
 		return
 	}
 
-	if *inputFile == "" || len(*inputFile) == 0 {
-		fmt.Println("Error: Input file path cannot be empty")
-		return
-	}
-
-	_, err := os.Stat(*inputFile)
-	if os.IsNotExist(err) {
-		fmt.Printf("Error: Input file '%s' does not exist\n", *inputFile)
-		return
-	}
+	fmt.Println("Advent of Code 2025 - Command Line Interface")
+	fmt.Println("--------------------------------------------")
+	fmt.Println()
 
 	fmt.Println("Executing Day", *day, "with input file", *inputFile)
 
@@ -46,5 +29,5 @@ func main() {
 		return
 	}
 
-	fmt.Printf("Result for Day %d Part %d: %d\n", *day, *part, result)
+	fmt.Printf("Result for Day %d Part %d:\n%d\n", *day, *part, result)
 }

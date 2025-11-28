@@ -1,7 +1,8 @@
 .PHONY: run build
 
-run:
-	@go run cmd/aoc/main.go $(ARGS)
+# Makefile for building the AoC application
+# Usage:
+#   make build  - to build the command-line application
 
 build:
 	@go build -o bin/aoc cmd/aoc/main.go

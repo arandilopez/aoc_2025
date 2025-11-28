@@ -1,3 +1,4 @@
+// Package utils provides utility functions for executing Advent of Code solutions.
 package utils
 
 import (
@@ -7,6 +8,7 @@ import (
 	"github.com/arandilopez/aoc_2025/internal/aoc"
 )
 
+// ExecDay executes the specified day's part function from the AdventOfCode interface.
 func ExecDay(aoc aoc.AdventOfCode, day int, part int, inputFile string) (int, error) {
 	function := reflect.ValueOf(aoc).MethodByName(
 		"Day" + string(rune('0'+day)) +
