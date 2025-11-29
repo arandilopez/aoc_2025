@@ -10,7 +10,7 @@ import (
 // Execute the requested day's solution.
 func main() {
 	// parse command line arguments to get the day number
-	day, part, inputFile, err := utils.ArgsValidation()
+	args, err := utils.ArgsValidation()
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -20,14 +20,21 @@ func main() {
 	fmt.Println("--------------------------------------------")
 	fmt.Println()
 
-	fmt.Println("Executing Day", *day, "with input file", *inputFile)
+	fmt.Println("Executing Day", args.Day, "Part", args.Part, "with input file", args.InputFile)
 
 	aocInstance := aoc.AdventOfCode{}
-	result, err := utils.ExecDay(&aocInstance, day, part, inputFile)
+	result, err := utils.ExecSolution(aocInstance, args)
 	if err != nil {
-		fmt.Printf("Error executing Day %d Part %d: %v\n", *day, *part, err)
+		fmt.Printf("Error executing Day %d Part %d: %v\n", args.Day, args.Part, err)
 		return
 	}
 
-	fmt.Printf("Result for Day %d Part %d:\n%d\n", *day, *part, result)
+	fmt.Printf("Result for Day %d Part %d:\n", args.Day, args.Part)
+	fmt.Println(result)
+	err = utils.CopyToClipboard(result)
+	if err != nil {
+		fmt.Println("Warning: Failed to copy result to clipboard:", err)
+	} else {
+		fmt.Println("Result copied to clipboard!")
+	}
 }
