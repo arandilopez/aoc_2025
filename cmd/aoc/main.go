@@ -23,7 +23,7 @@ func main() {
 	fmt.Println("Executing Day", args.Day, "Part", args.Part, "with input file", args.InputFile)
 
 	aocInstance := aoc.AdventOfCode{}
-	result, err := utils.ExecSolution(aocInstance, args)
+	result, err := aoc.ExecSolution(aocInstance, args)
 	if err != nil {
 		fmt.Printf("Error executing Day %d Part %d: %v\n", args.Day, args.Part, err)
 		return
