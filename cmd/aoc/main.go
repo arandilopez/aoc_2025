@@ -20,17 +20,20 @@ func main() {
 	fmt.Println("--------------------------------------------")
 	fmt.Println()
 
-	fmt.Println("Executing Day", args.Day, "Part", args.Part, "with input file", args.InputFile)
+	fmt.Println("Executing Day", *args.Day, "Part", *args.Part, "with input file", *args.InputFile)
 
+	// Execute the solution for the specified day and part
 	aocInstance := aoc.AdventOfCode{}
 	result, err := aoc.ExecSolution(aocInstance, args)
 	if err != nil {
-		fmt.Printf("Error executing Day %d Part %d: %v\n", args.Day, args.Part, err)
+		fmt.Printf("Error executing Day %d Part %d: %v\n", *args.Day, *args.Part, err)
 		return
 	}
 
-	fmt.Printf("Result for Day %d Part %d:\n", args.Day, args.Part)
+	fmt.Printf("Result for Day %d Part %d:\n", *args.Day, *args.Part)
 	fmt.Println(result)
+
+	// Copy result to clipboard
 	err = utils.CopyToClipboard(result)
 	if err != nil {
 		fmt.Println("Warning: Failed to copy result to clipboard:", err)

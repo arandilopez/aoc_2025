@@ -8,9 +8,9 @@ import (
 )
 
 type Args struct {
-	Day       int
-	Part      int
-	InputFile string
+	Day       *int
+	Part      *int
+	InputFile *string
 }
 
 func ArgsValidation() (*Args, error) {
@@ -36,8 +36,8 @@ func ArgsValidation() (*Args, error) {
 	}
 
 	return &Args{
-		Day:       *day,
-		Part:      *part,
-		InputFile: *inputFile,
+		Day:       day,
+		Part:      part,
+		InputFile: inputFile,
 	}, nil
 }
