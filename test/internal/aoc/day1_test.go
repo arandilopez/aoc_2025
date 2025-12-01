@@ -1,4 +1,4 @@
-package aoc
+package tests
 
 import (
 	"testing"
@@ -6,33 +6,41 @@ import (
 	"github.com/arandilopez/aoc_2025/internal/aoc"
 )
 
+var inputDay1 = `L68
+L30
+R48
+L5
+R60
+L55
+L1
+L99
+R14
+L82`
+
 func TestDay1Part1(t *testing.T) {
-	input := "1 2 3"
-	expected := "42" // Replace with the expected result for the given input
+	expected := "3"
 
 	aocInstance := aoc.AdventOfCode{}
-	result, err := aocInstance.Day1Part1(&input)
+	result, err := aocInstance.Day1Part1(&inputDay1)
 	if err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}
 
 	if result != expected {
-		t.Errorf("Day1Part1(%v): Expected %v, got %v", input, expected, result)
+		t.Errorf("Day1Part1(): Expected %v, got %v", expected, result)
 	}
 }
 
 func TestDay1Part2(t *testing.T) {
-	t.Skip("Not implemented yet")
-	input := "4 5 6"
-	expected := "84" // Replace with the expected result for the given input
+	expected := "6"
 
 	aocInstance := aoc.AdventOfCode{}
-	result, err := aocInstance.Day1Part2(&input)
+	result, err := aocInstance.Day1Part2(&inputDay1)
 	if err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}
 
 	if result != expected {
-		t.Errorf("Day1Part2(%v): Expected %v, got %v", input, expected, result)
+		t.Errorf("Day1Part2: Expected %v, got %v", expected, result)
 	}
 }
