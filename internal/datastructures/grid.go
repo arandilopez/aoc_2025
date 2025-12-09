@@ -48,10 +48,33 @@ func (g *Grid[T]) Set(row, col int, value T) bool {
 	return true
 }
 
+func (g *Grid[T]) RowAt(row int) ([]T, bool) {
+	if row < 0 || row >= g.Rows {
+		return nil, false
+	}
+	return g.Cells[row], true
+}
+
+func (g *Grid[T]) Find(predicate func(T) bool) (int, int, bool) {
+	for r := range g.Rows {
+		for c := range g.Cols {
+			if predicate(g.Cells[r][c]) {
+				return r, c, true
+			}
+		}
+	}
+	return -1, -1, false
+}
+
 func (g *Grid[T]) String() string {
 	result := ""
 	for _, row := range g.Cells {
-		result += fmt.Sprintln(row)
+		switch any(row).(type) {
+		case []rune:
+			result += fmt.Sprintf("%s\n", string(any(row).([]rune)))
+		default:
+			result += fmt.Sprintln(row)
+		}
 	}
 	return result
 }
