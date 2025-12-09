@@ -1,4 +1,4 @@
-package math
+package maths
 
 import "math"
 
@@ -9,13 +9,7 @@ func EuclideanDistance(x1, y1, x2, y2 float64) float64 {
 }
 
 func ManhattanDistance(x1, y1, x2, y2 float64) float64 {
-	dx := x2 - x1
-	if dx < 0 {
-		dx = -dx
-	}
-	dy := y2 - y1
-	if dy < 0 {
-		dy = -dy
-	}
+	dx := math.Abs(x2 - x1)
+	dy := math.Abs(y2 - y1)
 	return dx + dy
 }
