@@ -20,3 +20,9 @@ func ManhattanDistance(x1, y1, x2, y2 float64) float64 {
 	dy := math.Abs(y2 - y1)
 	return dx + dy
 }
+
+func ManhattanArea(x1, y1, x2, y2 float64) float64 {
+	dx := math.Abs(x2-x1) + 1
+	dy := math.Abs(y2-y1) + 1 // To include both edges
+	return dx * dy
+}
